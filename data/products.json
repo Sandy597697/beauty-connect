@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "name": "Luna Nails Studio",
+    "category": "Uñas",
+    "zone": "Zona 10",
+    "price_from": 150,
+    "verified": true,
+    "active": true
+  },
+  {
+    "id": 2,
+    "name": "Estilo Bella",
+    "category": "Cabello",
+    "zone": "Zona 14",
+    "price_from": 200,
+    "verified": true,
+    "active": true
+  },
+  {
+    "id": 3,
+    "name": "Glam by Ana",
+    "category": "Maquillaje",
+    "zone": "Mixco",
+    "price_from": 250,
+    "verified": false,
+    "active": true
+  }
+]
