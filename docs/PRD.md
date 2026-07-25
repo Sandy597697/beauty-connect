@@ -1,45 +1,124 @@
-# Product Requirements Document (PRD)
+# Product Requirement Document (PRD)
 
-## Product name
+## Product Name
 
-**Beauty Connect**
+**BeautyConnect**
 
-## Problem statement
+---
 
-Actualmente, muchas personas tienen dificultades para encontrar profesionales de belleza confiables que ofrezcan servicios de calidad cerca de su ubicación. La información suele estar dispersa entre redes sociales y recomendaciones personales, lo que dificulta comparar opciones y contactar al profesional adecuado.
+# 1. Problem Statement
 
-Por otra parte, muchos profesionales independientes del sector belleza tienen poca visibilidad digital y dependen principalmente de publicaciones en redes sociales o recomendaciones para conseguir nuevos clientes.
+Actualmente, muchas personas tienen dificultades para encontrar profesionales de belleza confiables que ofrezcan servicios de calidad cerca de su ubicación. La información suele encontrarse dispersa entre redes sociales, recomendaciones personales y diferentes plataformas digitales, lo que dificulta comparar opciones, verificar la calidad del servicio y tomar una decisión con confianza.
 
-## Target users
+Por otra parte, muchos profesionales independientes del sector belleza ofrecen servicios de alta calidad, pero cuentan con poca visibilidad digital y dependen principalmente de publicaciones en redes sociales o recomendaciones de sus clientes para conseguir nuevas oportunidades de negocio.
 
-### Clients
+Como consecuencia, existe la necesidad de una plataforma tecnológica que conecte a ambos usuarios en un solo lugar, permitiendo descubrir profesionales, consultar información confiable, comparar opciones y facilitar el primer contacto para la solicitud de una cita.
 
-Personas que buscan servicios de belleza y desean encontrar profesionales según el tipo de servicio, conocer información básica, ubicación y precios aproximados antes de solicitar una cita.
+---
 
-### Beauty professionals
+# 2. Target Users
 
-Profesionales independientes o pequeños negocios de belleza que necesitan aumentar su visibilidad y mostrar sus servicios a clientes potenciales.
+## 2.1 Cliente
 
-## User stories
+Personas que buscan servicios de belleza de forma rápida y confiable. Necesitan comparar opciones y contactar al profesional que mejor se adapte a sus necesidades.
 
-- Como cliente, quiero seleccionar una categoría de belleza para encontrar profesionales que ofrezcan el servicio que necesito.
-- Como cliente, quiero consultar información básica de cada profesional para comparar opciones.
-- Como cliente, quiero contactar al profesional por WhatsApp para solicitar una cita.
-- Como profesional de belleza, quiero mostrar mis servicios, fotografías, zona y precios aproximados para atraer nuevos clientes.
+## 2.2 Profesional de belleza
 
-## Core features
+Profesionales independientes o pequeños negocios que desean promocionar sus servicios, mostrar su trabajo y captar nuevos clientes.
 
-1. Listado de profesionales organizado por categoría de servicio.
-2. Perfil básico con nombre, fotografías, zona, precio aproximado y verificación manual.
-3. Botón para solicitar una cita mediante WhatsApp.
+---
 
-## Out of scope
+# 3. User Stories
 
-La primera versión no incluirá cuentas de usuario, reservas automáticas, disponibilidad en tiempo real, filtros avanzados, reseñas, notificaciones, chat interno ni pagos en línea.
+## 3.1 Cliente
 
-## Success criteria
+- Como cliente, quiero seleccionar una categoría de servicio para encontrar profesionales.
+- Como cliente, quiero visualizar un listado de profesionales para comparar opciones.
+- Como cliente, quiero ingresar al perfil de un profesional para conocer su información.
+- Como cliente, quiero visualizar fotografías de trabajos realizados para evaluar la calidad del servicio.
+- Como cliente, quiero ver si un perfil está verificado para confiar en la información que muestra.
+- Como cliente, quiero contactar al profesional para solicitar una cita.
 
-- El usuario puede seleccionar una categoría y ver los profesionales activos relacionados.
-- Cada profesional muestra nombre, fotografía, zona, precio aproximado y estado de verificación.
-- El usuario puede iniciar el contacto con un profesional mediante WhatsApp.
-- La navegación puede realizarse sin crear una cuenta.
+## 3.2 Profesional de belleza
+
+- Como profesional de belleza, quiero que se cree un perfil con mi información para promocionar mis servicios.
+- Como profesional de belleza, quiero poder enviar información actualizada para mantener mi perfil vigente.
+
+---
+
+# 4. Core Features
+
+## 4.1 Búsqueda por categoría
+
+Permite al cliente seleccionar una categoría de servicio y visualizar únicamente los profesionales relacionados.
+
+**Incluye:**
+
+- Selección de categoría.
+- Listado de profesionales.
+- Acceso al perfil.
+
+---
+
+## 4.2 Perfil del profesional
+
+Presenta la información necesaria para ayudar al cliente a tomar una decisión, incluyendo una señal de confianza mediante verificación manual.
+
+**Incluye:**
+
+- Nombre.
+- Descripción.
+- Servicios.
+- Precio desde.
+- Fotografías.
+- Zona o ubicación aproximada.
+- Distintivo **Perfil verificado** (cuando aplique).
+- Datos de contacto.
+
+---
+
+## 4.3 Contacto con el profesional
+
+Permite al cliente comunicarse con el profesional para solicitar una cita.
+
+**Incluye:**
+
+- Botón de contacto por WhatsApp.
+- Información de contacto.
+
+---
+
+## 4.4 Gestión del perfil (proceso administrativo para el MVP)
+
+Para el MVP, la creación y actualización de perfiles la realiza el equipo de BeautyConnect de forma manual, a partir de la información que el profesional envía (por ejemplo, mediante WhatsApp o un formulario simple). El autoservicio de edición desde una cuenta propia queda fuera del alcance hasta que exista registro de usuarios.
+
+**Incluye:**
+
+- Recepción de información del profesional.
+- Carga o actualización manual del perfil.
+- Verificación manual antes de publicar o actualizar el distintivo **Perfil verificado**.
+
+---
+
+# 5. Out of Scope
+
+| Funcionalidad | Justificación |
+|---------------|---------------|
+| Registro e inicio de sesión (clientes y profesionales) | Se implementará en futuras versiones; para el MVP la gestión de perfiles es manual. |
+| Filtros avanzados | No son necesarios para validar el MVP. |
+| Visualización de horarios en tiempo real | Incrementa la complejidad del desarrollo inicial. |
+| Reservas automáticas | El contacto directo por WhatsApp es suficiente para validar el MVP. |
+| Calificaciones y reseñas | Se incorporarán cuando exista una base de usuarios. |
+| Notificaciones | No son indispensables para validar la propuesta de valor. |
+| Chat interno | El contacto directo por WhatsApp es suficiente para el MVP. |
+| Pagos en línea | Requieren procesos adicionales que no forman parte de la primera versión. |
+
+---
+
+# 6. Success Criteria
+
+- Al menos un número inicial de profesionales con perfil publicado y verificado antes del lanzamiento del MVP.
+- Un cliente puede ir de la pantalla de categorías al contacto por WhatsApp en tres pasos o menos.
+- El equipo de BeautyConnect puede publicar o actualizar un perfil manualmente en menos de un día desde que recibe la información.
+- Los clientes logran identificar y contactar a un profesional sin necesitar ayuda externa.
+- El MVP permite validar si clientes y profesionales encuentran valor en conectarse mediante la plataforma antes de invertir en cuentas de usuario, reservas automáticas o pagos en línea.

@@ -1,17 +1,17 @@
-# Beauty Connect
+ # BeautyConnect
 
-Beauty Connect es una plataforma dirigida a personas que buscan servicios de belleza y tienen dificultad para encontrar profesionales confiables y cercanos en un solo lugar. La **primera versión** permitirá consultar opciones organizadas por servicio, conocer información básica de cada profesional y facilitar el contacto para solicitar una cita.
+BeautyConnect es una plataforma tecnológica que conecta a personas que buscan servicios de belleza con profesionales independientes del sector. Su objetivo es centralizar la información en un solo lugar para facilitar la búsqueda, comparación de opciones y el primer contacto para solicitar una cita.
 
-## The three Musts
+## The Three Musts
 
-- Consultar un listado de profesionales organizado por categoría de servicio.
-- Visualizar perfiles básicos con nombre, fotografías, zona, precio aproximado y verificación manual.
-- Solicitar una cita mediante WhatsApp.
+- Buscar profesionales por categoría de servicio.
+- Visualizar perfiles con información, fotografías y distintivo de verificación.
+- Contactar al profesional mediante WhatsApp.
 
-## Core features at a glance
+## Core Features at a Glance
 
 | Feature | Priority |
 |---|---|
-| Listado por categoría de servicio | Must |
-| Perfil básico del profesional | Must |
-| Solicitud de cita por WhatsApp | Must |
+| Búsqueda por categoría | Must |
+| Perfil del profesional | Must |
+| Contacto por WhatsApp | Must |
