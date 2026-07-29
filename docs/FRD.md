@@ -250,7 +250,7 @@ Información enviada por el profesional, por ejemplo, mediante WhatsApp o un for
 
 #### Datos de salida
 
-- Perfil publicado o actualizado en el archivo de datos de prueba que consumen las Funcionalidades 1 y 2.
+- Perfil publicado o actualizado en el archivo `products.json`, ubicado en la carpeta `/data`, que sirve como fuente de datos de prueba para las Funcionalidades 1 y 2.
 
 ### Caso borde: Información incompleta o dudosa
 

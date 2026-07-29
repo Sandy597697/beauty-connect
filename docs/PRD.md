@@ -2,7 +2,7 @@
 
 ## Product Name
 
-**BeautyConnect**
+**Beauty Connect**
 
 ---
 
@@ -90,7 +90,7 @@ Permite al cliente comunicarse con el profesional para solicitar una cita.
 
 ## 4.4 Gestión del perfil (proceso administrativo para el MVP)
 
-Para el MVP, la creación y actualización de perfiles la realiza el equipo de BeautyConnect de forma manual, a partir de la información que el profesional envía (por ejemplo, mediante WhatsApp o un formulario simple). El autoservicio de edición desde una cuenta propia queda fuera del alcance hasta que exista registro de usuarios.
+Para el MVP, la creación y actualización de perfiles la realiza el equipo de Beauty Connect de forma manual, a partir de la información que el profesional envía (por ejemplo, mediante WhatsApp o un formulario simple). El autoservicio de edición desde una cuenta propia queda fuera del alcance hasta que exista registro de usuarios.
 
 **Incluye:**
 
@@ -119,6 +119,6 @@ Para el MVP, la creación y actualización de perfiles la realiza el equipo de B
 
 - Al menos un número inicial de profesionales con perfil publicado y verificado antes del lanzamiento del MVP.
 - Un cliente puede ir de la pantalla de categorías al contacto por WhatsApp en tres pasos o menos.
-- El equipo de BeautyConnect puede publicar o actualizar un perfil manualmente en menos de un día desde que recibe la información.
+- El equipo de Beauty Connect puede publicar o actualizar un perfil manualmente en menos de un día desde que recibe la información.
 - Los clientes logran identificar y contactar a un profesional sin necesitar ayuda externa.
 - El MVP permite validar si clientes y profesionales encuentran valor en conectarse mediante la plataforma antes de invertir en cuentas de usuario, reservas automáticas o pagos en línea.
