@@ -1,0 +1,233 @@
+/* Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+    background-color: #faf6f6;
+    color: #2c2525;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+.app-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(186, 150, 150, 0.15);
+    padding: 30px;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header & Logo */
+header {
+    border-bottom: 1px solid #f0e6e6;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.logo {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #d1517a;
+    letter-spacing: -0.5px;
+}
+
+/* Common View Styles */
+.view {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    animation: fadeIn 0.3s ease;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Category View */
+.question {
+    font-size: 1.5rem;
+    color: #4a3c31;
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.category-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+@media (max-width: 480px) {
+    .category-buttons {
+        grid-template-columns: 1fr;
+    }
+}
+
+.category-btn {
+    background-color: #ffffff;
+    border: 2px solid #ecdada;
+    color: #7d5e5e;
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 24px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.category-btn:hover {
+    background-color: #fff3f5;
+    border-color: #d1517a;
+    color: #d1517a;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(209, 81, 122, 0.1);
+}
+
+.category-btn:active {
+    transform: translateY(0);
+}
+
+/* Professionals View Header */
+.navigation-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #f5ebeb;
+}
+
+.back-btn {
+    background-color: #faf0f1;
+    border: 1px solid #ebd3d6;
+    color: #a44865;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.back-btn:hover {
+    background-color: #f7e1e4;
+    color: #8c3651;
+}
+
+.category-title {
+    font-size: 1.4rem;
+    color: #4a3c31;
+    font-weight: 600;
+}
+
+/* Professionals Grid & Cards */
+.professionals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    align-content: start;
+    flex-grow: 1;
+}
+
+.professional-card {
+    background-color: #ffffff;
+    border: 1px solid #f0e1e1;
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.25s ease;
+}
+
+.professional-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(186, 150, 150, 0.1);
+    border-color: #ebd3d6;
+}
+
+.prof-info {
+    margin-bottom: 15px;
+}
+
+.prof-name {
+    font-size: 1.25rem;
+    color: #3d2f2f;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.prof-zone {
+    font-size: 0.95rem;
+    color: #7d6e6e;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.prof-price {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #d1517a;
+    margin-top: 10px;
+}
+
+.prof-verified {
+    display: inline-flex;
+    align-items: center;
+    background-color: #e3f7ed;
+    color: #1b7a4b;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin-top: 10px;
+    width: fit-content;
+}
+
+/* Empty State Message */
+.empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #faf5f5;
+    border-radius: 12px;
+    border: 1px dashed #ebd5d5;
+}
+
+.empty-state-text {
+    font-size: 1.1rem;
+    color: #7d6363;
+    font-weight: 500;
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beauty Connect</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1 class="logo">Beauty Connect</h1>
+        </header>
+
+        <main>
+            <!-- Category Selection View -->
+            <section id="category-view" class="view">
+                <h2 class="question">¿Qué servicio de belleza buscas?</h2>
+                <div class="category-buttons">
+                    <button class="category-btn" data-category="Uñas">Uñas</button>
+                    <button class="category-btn" data-category="Cabello">Cabello</button>
+                    <button class="category-btn" data-category="Maquillaje">Maquillaje</button>
+                    <button class="category-btn" data-category="Pestañas">Pestañas</button>
+                </div>
+            </section>
+
+            <!-- Professionals List View -->
+            <section id="professionals-view" class="view hidden">
+                <div class="navigation-bar">
+                    <button id="back-btn" class="back-btn">← Volver a categorías</button>
+                    <h2 id="selected-category-title" class="category-title"></h2>
+                </div>
+                <div id="professionals-grid" class="professionals-grid"></div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
