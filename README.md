@@ -15,3 +15,10 @@ Beauty Connect es una plataforma tecnológica que conecta a personas que buscan 
 | Búsqueda por categoría | Must |
 | Perfil del profesional | Must |
 | Contacto por WhatsApp | Must |
+
+
+## Live Prototype
+
+**GitHub Pages:** https://sandy597697.github.io/beauty-connect/
+
+This prototype demonstrates the MVP implementation for Beauty Connect using HTML, CSS and vanilla JavaScript.
