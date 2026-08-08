@@ -6,7 +6,8 @@
     "zone": "Zona 10",
     "price_from": 150,
     "verified": true,
-    "active": true
+    "active": true,
+    "image": "https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=900&q=85"
   },
   {
     "id": 2,
@@ -15,7 +16,8 @@
     "zone": "Zona 14",
     "price_from": 200,
     "verified": true,
-    "active": true
+    "active": true,
+    "image": "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=900&q=85"
   },
   {
     "id": 3,
@@ -24,6 +26,7 @@
     "zone": "Mixco",
     "price_from": 250,
     "verified": false,
-    "active": true
+    "active": true,
+    "image": "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=900&q=85"
   }
 ]
