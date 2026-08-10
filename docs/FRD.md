@@ -67,13 +67,49 @@ Selecciona una de las cuatro categorías disponibles.
 - El distintivo **"Perfil verificado"** se muestra si el dato del profesional indica que está verificado.
 - Los profesionales se muestran en orden alfabético por nombre.
 
+### Estado de carga de profesionales
+
+Mientras se obtiene `data/products.json`, el sistema muestra el título:
+
+**"Buscando profesionales"**
+
+y el mensaje:
+
+**"Estamos preparando las opciones de {categoría}."**
+
+Para lectores de pantalla, el sistema anuncia:
+
+**"Cargando profesionales de {categoría}."**
+
+Durante este estado, el sistema no muestra falsamente la categoría como vacía.
+
+### Estado de error al cargar los profesionales
+
+Si ocurre un error HTTP, el JSON es inválido, la estructura no es un arreglo o falla la lectura de los datos, el sistema muestra el título:
+
+**"No pudimos cargar los profesionales"**
+
+y el mensaje:
+
+**"Intenta nuevamente en unos momentos."**
+
+También muestra un botón **"Volver a categorías"**.
+
+Para lectores de pantalla, el sistema anuncia:
+
+**"No se pudieron cargar los profesionales."**
+
 ### Caso borde: categoría sin profesionales disponibles
 
-Si el usuario selecciona una categoría que no tiene profesionales disponibles, el sistema no muestra un listado vacío. En su lugar, presenta el mensaje:
+Si el usuario selecciona una categoría que no tiene profesionales disponibles, el sistema no muestra un listado vacío. En su lugar, presenta el título:
 
-**"Por el momento no hay profesionales disponibles en esta categoría"**
+**"Aún no encontramos opciones aquí"**
 
-con un botón **"Volver a categorías"** que regresa a la Pantalla 1.
+con el mensaje:
+
+**"Por el momento no hay profesionales disponibles en esta categoría."**
+
+y un botón **"Volver a categorías"** que regresa a la Pantalla 1.
 
 ---
 
