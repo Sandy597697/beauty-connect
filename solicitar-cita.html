@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitar una cita — Beauty Connect</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;0,700;1,500&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .appointment-container { max-width: 760px; }
+        .appointment-panel { padding: clamp(1.5rem, 5vw, 3rem); border: 1px solid var(--color-border); border-radius: .5rem .5rem 2rem .5rem; background: rgba(255, 255, 255, .94); box-shadow: var(--shadow-soft); }
+        .appointment-title { color: var(--color-primary); font-family: var(--font-heading); font-size: clamp(2rem, 5vw, 3rem); }
+        .form-label { color: var(--color-text); font-weight: 700; }
+        .form-control { border-color: var(--color-border); border-radius: .5rem; background-color: #fff; color: var(--color-text); }
+        .form-control:focus { border-color: var(--color-secondary); box-shadow: 0 0 0 .25rem rgba(149, 115, 180, .18); }
+        textarea.form-control { min-height: 8rem; resize: vertical; }
+        .btn-submit { min-width: 12rem; padding: .7rem 1.5rem; border: 1px solid var(--color-primary); border-radius: 999px; background: var(--color-primary); color: #fff; font-weight: 700; }
+        .btn-submit:hover { background: var(--color-secondary); border-color: var(--color-secondary); color: #fff; }
+        .btn-submit:focus-visible, .home-link:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 4px; }
+        .btn-submit:disabled { opacity: .65; }
+        .home-link { color: var(--color-primary); font-weight: 700; text-decoration: none; }
+        .home-link:hover { color: var(--color-secondary); text-decoration: underline; }
+        .form-status { padding: .9rem 1rem; border-radius: .5rem; font-weight: 700; }
+        .form-status.success { border: 1px solid var(--color-soft-accent); background: rgba(180, 155, 201, .18); color: var(--color-primary); }
+        .form-status.error { border: 1px solid #b95066; background: #fff1f4; color: #7b2438; }
+    </style>
+</head>
+<body>
+    <div class="main-wrapper">
+        <header class="site-header">
+            <div class="container header-content text-center">
+                <div class="brand-mark" aria-hidden="true">
+                    <span></span>
+                    <svg viewBox="0 0 48 22" focusable="false">
+                        <path d="M2 18C10 7 17 3 24 3s14 4 22 15" />
+                        <path d="M13 18c4-6 7-8 11-8s7 2 11 8" />
+                    </svg>
+                    <span></span>
+                </div>
+                <p class="logo mb-1">Beauty Connect</p>
+                <p class="tagline mb-0">Tu conexión con el mundo de la belleza</p>
+            </div>
+        </header>
+
+        <main class="container app-main">
+            <div class="appointment-container mx-auto">
+                <a class="home-link d-inline-block mb-4" href="index.html">← Volver al inicio</a>
+                <section class="appointment-panel" aria-labelledby="appointment-title">
+                    <p class="eyebrow mb-2">Estamos para ayudarte</p>
+                    <h1 id="appointment-title" class="appointment-title mb-3">Solicitar una cita</h1>
+                    <p class="intro-copy mb-4">Comparte los detalles de la cita que deseas y nos pondremos en contacto contigo.</p>
+
+                    <form id="appointment-form">
+                        <div class="row g-3">
+                            <div class="col-12 col-md-6">
+                                <label class="form-label" for="nombre_cliente">Nombre</label>
+                                <input class="form-control" id="nombre_cliente" name="nombre_cliente" type="text" autocomplete="name" required>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label" for="telefono">Teléfono</label>
+                                <input class="form-control" id="telefono" name="telefono" type="tel" autocomplete="tel" required>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label" for="profesional">Profesional</label>
+                                <input class="form-control" id="profesional" name="profesional" type="text" required>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label" for="servicio">Servicio</label>
+                                <input class="form-control" id="servicio" name="servicio" type="text" required>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label" for="fecha_solicitada">Fecha solicitada</label>
+                                <input class="form-control" id="fecha_solicitada" name="fecha_solicitada" type="date" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label" for="mensaje">Mensaje</label>
+                                <textarea class="form-control" id="mensaje" name="mensaje" required></textarea>
+                            </div>
+                            <div class="col-12 pt-2">
+                                <button id="submit-button" class="btn btn-submit" type="submit">Enviar solicitud</button>
+                            </div>
+                            <div class="col-12">
+                                <div id="form-status" class="form-status d-none" role="status" aria-live="polite"></div>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </main>
+
+        <footer class="site-footer text-center mt-auto">
+            <div class="container">
+                <p class="mb-1">&copy; 2026 Beauty Connect</p>
+                <p class="footer-note mb-0">Encuentra belleza, confianza y talento cerca de ti.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script type="module">
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+        const supabase = createClient(
+            'https://fpcfvcsuntgxwwatnsny.supabase.co',
+            'sb_publishable_YGqzo8E7-XP6kieL-KgFog_cD5aM6Xx'
+        );
+
+        const form = document.querySelector('#appointment-form');
+        const submitButton = document.querySelector('#submit-button');
+        const status = document.querySelector('#form-status');
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            submitButton.disabled = true;
+            submitButton.textContent = 'Enviando…';
+            status.className = 'form-status d-none';
+
+            const formData = new FormData(form);
+            const solicitud = {
+                nombre_cliente: formData.get('nombre_cliente').trim(),
+                telefono: formData.get('telefono').trim(),
+                profesional: formData.get('profesional').trim(),
+                servicio: formData.get('servicio').trim(),
+                fecha_solicitada: formData.get('fecha_solicitada'),
+                mensaje: formData.get('mensaje').trim()
+            };
+
+            try {
+                const { error } = await supabase.from('solicitudes_cita').insert(solicitud);
+                if (error) throw error;
+
+                form.reset();
+                status.textContent = '¡Gracias! Tu solicitud de cita fue enviada correctamente.';
+                status.className = 'form-status success';
+            } catch (error) {
+                status.textContent = `No pudimos enviar tu solicitud. ${error.message || 'Intenta nuevamente.'}`;
+                status.className = 'form-status error';
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Enviar solicitud';
+            }
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
