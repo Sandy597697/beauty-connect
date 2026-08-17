@@ -49,7 +49,6 @@ Selecciona una de las cuatro categorías disponibles.
 
 - Revisa y compara las opciones disponibles.
 - Puede regresar a la pantalla anterior para elegir otra categoría.
-- Puede seleccionar una tarjeta para acceder al perfil del profesional (ver Funcionalidad 2).
 
 **Datos de entrada:**
 
@@ -113,85 +112,68 @@ y un botón **"Volver a categorías"** que regresa a la Pantalla 1.
 
 ---
 
-## Funcionalidad 2: Perfil del profesional (Core Feature 4.2)
+## Funcionalidad 2: Solicitar una cita
 
-**Objetivo:** mostrar al cliente la información necesaria de un profesional para decidir si desea contactarlo.
+**Objetivo:** permitir que una persona envíe una solicitud de cita con sus datos de contacto, el profesional y el servicio de su interés.
 
-### Pantalla: Perfil del profesional
+### Acceso y navegación
+
+- Desde la pantalla principal, el usuario accede mediante el enlace **"Solicitar una cita"**.
+- El enlace abre la página `solicitar-cita.html`.
+- La página incluye el enlace **"Volver al inicio"**, que regresa a la pantalla principal.
+
+### Pantalla: Solicitar una cita
 
 **Lo que ve el usuario:**
 
-- Nombre del profesional.
-- Descripción breve.
-- Lista de servicios que ofrece.
-- Precio desde, para cada servicio o de forma general.
-- Galería de fotografías de trabajos realizados.
-- Zona o ubicación aproximada.
-- Distintivo **"Perfil verificado"**, cuando aplique.
-- Botón de contacto (ver Funcionalidad 3).
-- Opción para volver al listado de profesionales.
+- Título **"Solicitar una cita"**.
+- Formulario de solicitud con seis campos.
+- Botón **"Enviar solicitud"**.
 
 **Lo que hace el usuario:**
 
-- Revisa la información y las fotografías.
-- Decide si contactar al profesional o volver al listado.
+- Completa los seis campos del formulario.
+- Presiona el botón **"Enviar solicitud"** para enviar la información.
 
 **Datos de entrada:**
 
-- Profesional seleccionado desde el listado (Funcionalidad 1).
+- `nombre_cliente`: nombre de la persona que solicita la cita.
+- `telefono`: número de teléfono de contacto.
+- `profesional`: profesional con quien desea solicitar la cita.
+- `servicio`: servicio de belleza solicitado.
+- `fecha_solicitada`: fecha deseada para la cita.
+- `mensaje`: información adicional proporcionada por la persona.
 
 **Datos de salida:**
 
-- Información completa del perfil del profesional seleccionado.
+- Una sola fila almacenada en la tabla `solicitudes_cita` de Supabase.
+- Mensaje de confirmación o mensaje de error, según el resultado del envío.
 
 ### Reglas funcionales
 
-- Solo se muestran perfiles activos.
-- Si no se definió un precio, se muestra el texto **"Precio a consultar"** en vez de un monto.
+- Los seis campos son obligatorios.
+- El envío crea una sola fila en la tabla `solicitudes_cita` con los seis campos del formulario.
+- La aplicación no envía manualmente los campos `id` ni `created_at`.
+- Mientras se procesa la solicitud, el botón queda deshabilitado y muestra el texto **"Enviando…"**.
+- Después de un envío exitoso, el formulario se limpia.
+- Al finalizar el intento, tanto si fue exitoso como si ocurrió un error, el botón se reactiva y recupera el texto **"Enviar solicitud"**.
 
-### Caso borde: perfil incompleto
+### Estado de confirmación
 
-Si el perfil no tiene descripción o servicios definidos, el sistema muestra igualmente el perfil, ocultando únicamente las secciones sin información, sin mostrar campos vacíos ni mensajes de error.
+Después de almacenar correctamente la solicitud, el sistema muestra el mensaje:
 
-### Caso borde: fotografías no disponibles
+**"¡Gracias! Tu solicitud de cita fue enviada correctamente."**
 
-Si el profesional no ha cargado fotografías, el sistema muestra un marcador de posición (**"Imagen no disponible"**) en lugar de la galería, y el resto del perfil se sigue mostrando con normalidad.
+### Estado de error
 
-### Caso borde: perfil no verificado
+Si Supabase devuelve un error o falla el envío, el formulario conserva los datos ingresados y el sistema muestra:
 
-Si el profesional aún no ha sido verificado por Beauty Connect, el perfil permanece visible y funcional (incluyendo el botón de contacto), pero no muestra el distintivo **"Perfil verificado"**.
+**"No pudimos enviar tu solicitud. {detalle del error}"**
+
+Si no existe un detalle de error disponible, utiliza el texto **"Intenta nuevamente."**. Después del intento, el botón vuelve a estar habilitado y muestra nuevamente **"Enviar solicitud"**.
+
 ---
 
-## Funcionalidad 3: Contacto con el profesional (Core Feature 4.3)
+## Fuera del alcance del prototipo actual
 
-**Objetivo:** permitir que el cliente contacte directamente al profesional mediante un enlace a WhatsApp.
-
-### Pantalla: Contacto con el profesional
-
-**Lo que ve el usuario:**
-
-- Botón **"Contactar por WhatsApp"** dentro del perfil del profesional.
-
-**Lo que hace el usuario:**
-
-- Presiona el botón de contacto.
-
-**Datos de entrada:**
-
-- Selección del botón **"Contactar por WhatsApp"**.
-
-**Datos de salida:**
-
-- El sistema abre una conversación en WhatsApp con el número registrado del profesional.
-
-### Reglas funcionales
-
-- El botón debe utilizar el número de WhatsApp registrado para el profesional.
-- El enlace debe abrir WhatsApp Web o la aplicación instalada en el dispositivo, según corresponda.
-- El sistema no almacena conversaciones ni mensajes enviados entre el cliente y el profesional.
-
-### Caso borde: profesional sin número de contacto registrado
-
-Si el profesional no tiene un número de WhatsApp asociado, el botón de contacto no se muestra. En su lugar, el sistema presenta el mensaje:
-
-**"Este profesional aún no tiene un medio de contacto disponible."**
+El prototipo actual no incluye una pantalla de perfil individual, apertura de perfiles desde las tarjetas ni contacto por WhatsApp. Estas funcionalidades no se presentan como implementadas en este documento.

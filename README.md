@@ -17,8 +17,16 @@ Beauty Connect es una plataforma tecnológica que conecta a personas que buscan 
 | Contacto por WhatsApp | Must |
 
 
-## Live Prototype
+## Aplicación publicada
 
-**GitHub Pages:** https://sandy597697.github.io/beauty-connect/
+**Despliegue oficial actual en Vercel:** https://beauty-connect-hg5h.vercel.app
 
-This prototype demonstrates the MVP implementation for Beauty Connect using HTML, CSS and vanilla JavaScript.
+El producto permite:
+
+- Seleccionar una categoría de belleza.
+- Consultar profesionales disponibles.
+- Volver a la pantalla de categorías.
+- Acceder al formulario “Solicitar una cita”.
+- Enviar la solicitud a Supabase.
+
+El MVP de Beauty Connect está implementado con HTML, CSS y JavaScript vanilla.
