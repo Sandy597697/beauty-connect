@@ -22,6 +22,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     backButton.addEventListener('click', showCategories);
 
+    const requestedCategory = new URLSearchParams(window.location.search).get('category');
+    const matchingCategoryButton = Array.from(categoryButtons).find((button) => (
+        typeof requestedCategory === 'string'
+        && button.dataset.category.localeCompare(requestedCategory, 'es', { sensitivity: 'base' }) === 0
+    ));
+
+    if (matchingCategoryButton) {
+        showProfessionals(matchingCategoryButton.dataset.category);
+    }
+
     async function loadProfessionals() {
         dataState = 'loading';
 
@@ -136,6 +146,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const card = document.createElement('article');
         card.className = 'professional-card';
 
+        const cardLink = document.createElement('a');
+        const profileParams = new URLSearchParams({
+            id: String(professional.id),
+            category: professional.category
+        });
+        cardLink.className = 'professional-card-link';
+        cardLink.href = `perfil-profesional.html?${profileParams.toString()}`;
+        cardLink.setAttribute('aria-label', `Ver perfil de ${professional.name}`);
+
         const imageWrap = document.createElement('div');
         imageWrap.className = 'professional-image-wrap';
 
@@ -172,9 +191,18 @@ document.addEventListener('DOMContentLoaded', () => {
             ? `Desde Q${professional.price_from.toLocaleString('es-GT')}`
             : 'Precio a consultar';
 
-        cardBody.append(name, zone, price);
+        const cardFooter = document.createElement('div');
+        cardFooter.className = 'professional-card-footer';
+
+        const profileHint = document.createElement('span');
+        profileHint.className = 'professional-profile-hint';
+        profileHint.textContent = 'Ver perfil →';
+
+        cardFooter.append(price, profileHint);
+        cardBody.append(name, zone, cardFooter);
         card.append(imageWrap, cardBody);
-        column.appendChild(card);
+        cardLink.appendChild(card);
+        column.appendChild(cardLink);
 
         return column;
     }

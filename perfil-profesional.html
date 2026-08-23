@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil profesional — Beauty Connect</title>
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;0,700;1,500&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="perfil-profesional.js" defer></script>
+</head>
+<body>
+    <div class="main-wrapper">
+        <header class="site-header">
+            <div class="container header-content text-center">
+                <div class="brand-mark" aria-hidden="true">
+                    <span></span>
+                    <svg viewBox="0 0 48 22" focusable="false">
+                        <path d="M2 18C10 7 17 3 24 3s14 4 22 15" />
+                        <path d="M13 18c4-6 7-8 11-8s7 2 11 8" />
+                    </svg>
+                    <span></span>
+                </div>
+                <p class="logo mb-1">Beauty Connect</p>
+                <p class="tagline mb-0">Tu conexión con el mundo de la belleza</p>
+            </div>
+        </header>
+
+        <main id="main-content" class="container app-main">
+            <div class="profile-container mx-auto">
+                <a id="back-to-professionals" class="btn-back mb-4" href="index.html">← Volver a profesionales</a>
+                <div id="profile-status" role="status" aria-live="polite" aria-atomic="true">
+                    <div class="state-panel">
+                        <div class="loading-mark" aria-hidden="true"></div>
+                        <h1 class="state-title">Cargando perfil</h1>
+                        <p class="state-copy">Estamos preparando la información del profesional.</p>
+                    </div>
+                </div>
+                <article id="profile-content" class="profile-panel d-none" aria-labelledby="profile-name">
+                    <div class="row g-0">
+                        <div class="col-12 col-md-6">
+                            <div class="profile-image-wrap">
+                                <img id="profile-image" class="profile-image" src="" alt="" width="900" height="900">
+                                <span id="profile-verified" class="verified-badge d-none"></span>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="profile-content">
+                                <p id="profile-category" class="eyebrow mb-2"></p>
+                                <h1 id="profile-name" class="profile-title mb-3" tabindex="-1"></h1>
+                                <p id="profile-description" class="profile-description mb-4"></p>
+                                <div class="profile-details">
+                                    <span id="profile-zone" class="profile-detail"></span>
+                                    <span id="profile-price" class="price-label"></span>
+                                </div>
+                                <div id="whatsapp-action"></div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </main>
+
+        <footer class="site-footer text-center mt-auto">
+            <div class="container">
+                <p class="mb-1">&copy; 2026 Beauty Connect</p>
+                <p class="footer-note mb-0">Encuentra belleza, confianza y talento cerca de ti.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

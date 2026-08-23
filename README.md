@@ -24,9 +24,28 @@ Beauty Connect es una plataforma tecnológica que conecta a personas que buscan 
 El producto permite:
 
 - Seleccionar una categoría de belleza.
-- Consultar profesionales disponibles.
-- Volver a la pantalla de categorías.
+- Consultar los profesionales activos disponibles dentro de la categoría seleccionada.
+- Abrir el perfil individual de un profesional mediante su tarjeta o la indicación **“Ver perfil →”**.
+- Consultar en el perfil la fotografía, nombre, categoría, zona, precio desde, descripción y distintivo **“Perfil verificado”** cuando corresponde.
+- Regresar desde el perfil al listado de la categoría seleccionada.
+- Contactar al profesional desde su perfil mediante WhatsApp, con un mensaje preparado que incluye su nombre y categoría. Este contacto abre un servicio externo y no constituye un chat interno ni una reserva confirmada.
+- Volver desde el listado a la pantalla de categorías.
 - Acceder al formulario “Solicitar una cita”.
-- Enviar la solicitud a Supabase.
+- Enviar la solicitud a la tabla `solicitudes_cita` de Supabase.
+- Regresar desde el formulario al inicio.
 
-El MVP de Beauty Connect está implementado con HTML, CSS y JavaScript vanilla.
+## Datos de profesionales
+
+`data/products.json` es la fuente de datos del listado y de los perfiles profesionales. Incluye, entre otros datos, la descripción y el número de WhatsApp de cada profesional.
+
+Para la demostración actual, los perfiles utilizan temporalmente el mismo número empresarial. Este número no representa una cuenta individual definitiva para cada profesional.
+
+## Stack
+
+El MVP de Beauty Connect está implementado con HTML, CSS y JavaScript vanilla, sin framework ni proceso de compilación. Utiliza Bootstrap 5.3.8 desde CDN, un archivo JSON local para los datos de profesionales y Supabase para almacenar las solicitudes de cita. La aplicación está desplegada en Vercel.
+
+## Fuera del alcance actual
+
+- Reserva automática de citas.
+- Registro, autenticación e inicio de sesión.
+- Pagos en línea.
