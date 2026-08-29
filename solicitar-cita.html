@@ -101,14 +101,7 @@
         </footer>
     </div>
 
-    <script type="module">
-        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
-
-        const supabase = createClient(
-            'https://fpcfvcsuntgxwwatnsny.supabase.co',
-            'sb_publishable_YGqzo8E7-XP6kieL-KgFog_cD5aM6Xx'
-        );
-
+    <script>
         const form = document.querySelector('#appointment-form');
         const submitButton = document.querySelector('#submit-button');
         const status = document.querySelector('#form-status');
@@ -130,8 +123,23 @@
             };
 
             try {
-                const { error } = await supabase.from('solicitudes_cita').insert(solicitud);
-                if (error) throw error;
+                const response = await fetch('/api/solicitudes-cita', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(solicitud)
+                });
+
+                const result = await response.json().catch(() => ({}));
+
+                if (!response.ok) {
+                    const details = typeof result.details === 'string'
+                        ? result.details
+                        : result.details?.message;
+
+                    throw new Error(details || result.error || 'Intenta nuevamente.');
+                }
 
                 form.reset();
                 status.textContent = '¡Gracias! Tu solicitud de cita fue enviada correctamente.';
