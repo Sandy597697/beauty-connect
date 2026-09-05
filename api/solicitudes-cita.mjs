@@ -5,9 +5,16 @@ const REQUIRED_FIELDS = [
     'telefono',
     'profesional',
     'servicio',
-    'fecha_solicitada',
-    'mensaje'
+    'fecha_solicitada'
 ];
+
+const MAX_LENGTHS = {
+    nombre_cliente: 120,
+    telefono: 30,
+    profesional: 160,
+    servicio: 120,
+    mensaje: 1000
+};
 
 function sendJson(response, statusCode, body) {
     response.statusCode = statusCode;
@@ -49,24 +56,52 @@ export default async function handler(request, response) {
 
     if (missingFields.length > 0) {
         return sendJson(response, 400, {
-            error: 'All six fields are required.',
+            error: 'Faltan campos obligatorios.',
             fields: missingFields
         });
     }
 
-    const solicitud = Object.fromEntries(
-        REQUIRED_FIELDS.map((field) => [field, body[field].trim()])
-    );
+    if (body.mensaje !== undefined && typeof body.mensaje !== 'string') {
+        return sendJson(response, 400, { error: 'El mensaje debe ser texto.' });
+    }
+
+    const solicitud = {
+        ...Object.fromEntries(REQUIRED_FIELDS.map((field) => [field, body[field].trim()])),
+        mensaje: typeof body.mensaje === 'string' ? body.mensaje.trim() : ''
+    };
+
+    const oversizedFields = Object.entries(MAX_LENGTHS)
+        .filter(([field, maximum]) => solicitud[field].length > maximum)
+        .map(([field]) => field);
+
+    if (oversizedFields.length > 0) {
+        return sendJson(response, 400, {
+            error: 'Uno o más campos exceden la longitud permitida.',
+            fields: oversizedFields
+        });
+    }
+
+    if (!/^\+?[0-9 ()-]{8,30}$/.test(solicitud.telefono)) {
+        return sendJson(response, 400, { error: 'El teléfono no tiene un formato válido.' });
+    }
+
+    const requestedDate = new Date(`${solicitud.fecha_solicitada}T00:00:00Z`);
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(solicitud.fecha_solicitada)
+        || Number.isNaN(requestedDate.getTime())
+        || requestedDate.toISOString().slice(0, 10) !== solicitud.fecha_solicitada) {
+        return sendJson(response, 400, { error: 'La fecha solicitada no es válida.' });
+    }
 
     try {
         const supabaseResponse = await fetch(
-            `${SUPABASE_URL}/rest/v1/solicitudes_cita`,
+            `${SUPABASE_URL}/rest/v1/solicitudes_cita?select=folio,estado`,
             {
                 method: 'POST',
                 headers: {
                     apikey: serviceKey,
+                    Authorization: `Bearer ${serviceKey}`,
                     'Content-Type': 'application/json',
-                    Prefer: 'return=minimal'
+                    Prefer: 'return=representation'
                 },
                 body: JSON.stringify(solicitud)
             }
@@ -88,9 +123,19 @@ export default async function handler(request, response) {
             });
         }
 
+        const savedRows = await supabaseResponse.json();
+        const savedRequest = Array.isArray(savedRows) ? savedRows[0] : null;
+
+        if (!savedRequest?.folio || !savedRequest?.estado) {
+            return sendJson(response, 502, {
+                error: 'La solicitud se guardó, pero Supabase no devolvió el folio y el estado.'
+            });
+        }
+
         return sendJson(response, 201, {
             success: true,
-            message: 'Solicitud de cita guardada correctamente.'
+            folio: savedRequest.folio,
+            estado: savedRequest.estado
         });
     } catch (error) {
         return sendJson(response, 500, {
