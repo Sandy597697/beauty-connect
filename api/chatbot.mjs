@@ -134,6 +134,15 @@ export default async function handler(request, response) {
         );
 
         if (!geminiResponse.ok) {
+            const errorBody = await geminiResponse.json().catch(() => ({}));
+
+            console.error('Gemini API request failed', {
+                httpStatus: geminiResponse.status,
+                code: errorBody.error?.code,
+                status: errorBody.error?.status,
+                message: errorBody.error?.message
+            });
+
             return sendJson(response, 502, { error: 'No pudimos obtener una respuesta del asistente. Intenta nuevamente.' });
         }
 
