@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!Array.isArray(data)) throw new TypeError('Los datos de profesionales no son válidos.');
             professionals = data.filter((item) => item?.active === true && typeof item.name === 'string' && typeof item.category === 'string');
             if (professionals.length === 0) throw new Error('No hay profesionales disponibles en este momento.');
-            [...new Set(professionals.map((item) => item.category))].sort((a, b) => a.localeCompare(b, 'es')).forEach((service) => serviceSelect.add(new Option(service, service)));
+            ['Cabello', 'Maquillaje', 'Pestañas', 'Uñas'].forEach((service) => serviceSelect.add(new Option(service, service)));
             applyQuerySelection();
             optionsStatus.classList.add('d-none');
             form.classList.remove('d-none');
@@ -53,9 +53,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderProfessionalOptions() {
         const selectedService = serviceSelect.value;
-        professionalSelect.replaceChildren(new Option(selectedService ? 'Selecciona un profesional' : 'Selecciona primero un servicio', ''));
-        professionals.filter((item) => item.category === selectedService).sort((a, b) => a.name.localeCompare(b.name, 'es')).forEach((item) => professionalSelect.add(new Option(item.name, item.name)));
-        professionalSelect.disabled = !selectedService;
+        const availableProfessionals = professionals.filter((item) => item.category === selectedService).sort((a, b) => a.name.localeCompare(b.name, 'es'));
+        const noProfessionals = Boolean(selectedService) && availableProfessionals.length === 0;
+        professionalSelect.replaceChildren(new Option(noProfessionals ? 'No hay profesionales disponibles' : selectedService ? 'Selecciona un profesional' : 'Selecciona primero un servicio', ''));
+        availableProfessionals.forEach((item) => professionalSelect.add(new Option(item.name, item.name)));
+        professionalSelect.disabled = !selectedService || noProfessionals;
+        serviceSelect.setCustomValidity(noProfessionals ? 'No hay profesionales disponibles' : '');
     }
 
     function showReview(event) {
