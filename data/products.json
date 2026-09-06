@@ -9,7 +9,27 @@
     "active": true,
     "description": "Especialistas en manicura, pedicura y diseños de uñas con acabados elegantes y personalizados.",
     "whatsapp": "50230238761",
-    "image": "https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=900&q=85"
+    "image": "https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=900&q=85",
+    "services": [
+      {
+        "name": "Manicura clásica",
+        "description": "Limpieza, cuidado y esmaltado para una apariencia elegante.",
+        "duration_minutes": 45,
+        "price_from": 150
+      },
+      {
+        "name": "Pedicura",
+        "description": "Cuidado de pies y uñas con acabado personalizado.",
+        "duration_minutes": 60,
+        "price_from": 180
+      },
+      {
+        "name": "Diseño personalizado",
+        "description": "Diseños de uñas adaptados al estilo y ocasión de cada cliente.",
+        "duration_minutes": 75,
+        "price_from": 220
+      }
+    ]
   },
   {
     "id": 2,
@@ -21,7 +41,27 @@
     "active": true,
     "description": "Servicios profesionales de corte, peinado y cuidado del cabello para realzar tu estilo personal.",
     "whatsapp": "50230238761",
-    "image": "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=900&q=85"
+    "image": "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=900&q=85",
+    "services": [
+      {
+        "name": "Corte y secado",
+        "description": "Corte personalizado y acabado con secado.",
+        "duration_minutes": 60,
+        "price_from": 200
+      },
+      {
+        "name": "Peinado para evento",
+        "description": "Peinado adaptado al estilo del evento y preferencia del cliente.",
+        "duration_minutes": 75,
+        "price_from": 250
+      },
+      {
+        "name": "Tratamiento capilar",
+        "description": "Cuidado orientado a mejorar la apariencia y suavidad del cabello.",
+        "duration_minutes": 60,
+        "price_from": 275
+      }
+    ]
   },
   {
     "id": 3,
@@ -33,6 +73,26 @@
     "active": true,
     "description": "Maquillaje profesional y personalizado para eventos, sesiones fotográficas y ocasiones especiales.",
     "whatsapp": "50230238761",
-    "image": "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=900&q=85"
+    "image": "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=900&q=85",
+    "services": [
+      {
+        "name": "Maquillaje social",
+        "description": "Maquillaje personalizado para reuniones y ocasiones especiales.",
+        "duration_minutes": 75,
+        "price_from": 250
+      },
+      {
+        "name": "Maquillaje para evento",
+        "description": "Preparación completa adaptada al tipo de evento y estilo deseado.",
+        "duration_minutes": 90,
+        "price_from": 325
+      },
+      {
+        "name": "Prueba de maquillaje",
+        "description": "Prueba previa para definir tonos, acabado y estilo.",
+        "duration_minutes": 45,
+        "price_from": 175
+      }
+    ]
   }
 ]

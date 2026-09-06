@@ -76,10 +76,51 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         renderWhatsAppAction(professional);
+        renderServices(professional);
         document.title = `${professional.name} — Beauty Connect`;
         profileStatus.classList.add('d-none');
         profileContent.classList.remove('d-none');
         name.focus({ preventScroll: true });
+    }
+
+    function renderServices(professional) {
+        const section = document.getElementById('profile-services');
+        const list = document.getElementById('profile-services-list');
+        const services = Array.isArray(professional.services) ? professional.services : [];
+        list.replaceChildren();
+        section.hidden = services.length === 0;
+
+        services.forEach((service) => {
+            const card = document.createElement('article');
+            card.className = 'profile-service';
+
+            const name = document.createElement('h3');
+            name.className = 'profile-service-name';
+            name.textContent = service.name;
+
+            const description = document.createElement('p');
+            description.className = 'profile-service-description';
+            description.textContent = service.description;
+
+            const details = document.createElement('div');
+            details.className = 'profile-service-details';
+
+            const duration = document.createElement('p');
+            duration.className = 'profile-service-duration';
+            duration.textContent = Number.isFinite(service.duration_minutes)
+                ? `Duración estimada: ${service.duration_minutes} min`
+                : 'Duración estimada: consultar';
+
+            const price = document.createElement('span');
+            price.className = 'price-label';
+            price.textContent = Number.isFinite(service.price_from)
+                ? `Precio estimado desde Q${service.price_from.toLocaleString('es-GT')}`
+                : 'Precio estimado a consultar';
+
+            details.append(duration, price);
+            card.append(name, description, details);
+            list.appendChild(card);
+        });
     }
 
     function renderWhatsAppAction(professional) {

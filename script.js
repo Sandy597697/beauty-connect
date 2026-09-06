@@ -5,12 +5,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const backButton = document.getElementById('back-btn');
     const categoryHeading = document.getElementById('category-heading');
     const selectedCategoryTitle = document.getElementById('selected-category-title');
+    const selectedCategoryIntro = document.getElementById('selected-category-intro');
+    const professionalsCount = document.getElementById('professionals-count');
     const professionalsGrid = document.getElementById('professionals-grid');
     const professionalsStatus = document.getElementById('professionals-status');
 
     let professionals = [];
     let dataState = 'loading';
     let selectedCategory = '';
+
+    const categoryIntroductions = {
+        'Uñas': 'Explora servicios de manicura, pedicura y diseños de uñas. Consulta cada perfil para conocer sus opciones y precios estimados.',
+        'Cabello': 'Encuentra servicios de corte, peinado y cuidado capilar para diferentes estilos y ocasiones.',
+        'Maquillaje': 'Descubre opciones de maquillaje para eventos y ocasiones especiales. Consulta los servicios y precios estimados de cada perfil.',
+        'Pestañas': 'Explora profesionales y servicios especializados en el cuidado y realce de pestañas.'
+    };
 
     const professionalsRequest = loadProfessionals();
 
@@ -64,6 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function showProfessionals(category) {
         selectedCategory = category;
         selectedCategoryTitle.textContent = category;
+        selectedCategoryIntro.textContent = categoryIntroductions[category] || '';
         categoryView.classList.add('d-none');
         professionalsView.classList.remove('d-none');
 
@@ -83,6 +93,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderProfessionals(category) {
         professionalsGrid.replaceChildren();
+        professionalsCount.hidden = true;
+        professionalsCount.textContent = '';
 
         if (dataState === 'loading') {
             renderState({
@@ -108,6 +120,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const filteredProfessionals = professionals
             .filter((professional) => isProfessionalInCategory(professional, category))
             .sort((first, second) => first.name.localeCompare(second.name, 'es', { sensitivity: 'base' }));
+
+        const count = filteredProfessionals.length;
+        professionalsCount.textContent = `${count} ${count === 1 ? 'profesional encontrado' : 'profesionales encontrados'}`;
+        professionalsCount.hidden = false;
 
         if (filteredProfessionals.length === 0) {
             renderState({

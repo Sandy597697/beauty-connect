@@ -52,12 +52,17 @@ Profesionales activos:
 
 Actualmente no hay profesionales disponibles en la categoría Pestañas.
 
-Los precios publicados son precios “desde”. No constituyen una cotización definitiva ni un catálogo completo. El precio final debe consultarse directamente con el profesional.
+Servicios demostrativos publicados en los perfiles (duraciones estimadas y precios estimados desde):
+- Luna Nails Studio: Manicura clásica, 45 min, desde Q150; Pedicura, 60 min, desde Q180; Diseño personalizado, 75 min, desde Q220.
+- Estilo Bella: Corte y secado, 60 min, desde Q200; Peinado para evento, 75 min, desde Q250; Tratamiento capilar, 60 min, desde Q275.
+- Glam by Ana: Maquillaje social, 75 min, desde Q250; Maquillaje para evento, 90 min, desde Q325; Prueba de maquillaje, 45 min, desde Q175.
+
+Los precios y duraciones publicados son estimados. Al informar sobre servicios, precios o duraciones, aclara que son estimados, recomienda consultar la sección “Servicios y precios estimados” del perfil y confirmar los detalles finales directamente con el profesional. Los precios son “desde”, no una cotización definitiva ni un catálogo completo. El precio inicial general del perfil puede diferir del precio estimado de un servicio específico. Las duraciones estimadas no indican horarios ni disponibilidad para una cita.
 
 Para explorar profesionales:
 1. La persona selecciona una categoría en la página principal.
 2. Beauty Connect muestra los profesionales activos de esa categoría.
-3. La persona puede abrir un perfil para consultar información general.
+3. La persona puede abrir un perfil para consultar información general y sus servicios con precios y duraciones estimados.
 4. Desde el perfil puede utilizar “Contactar por WhatsApp”.
 
 WhatsApp es un medio de contacto externo. Abrirlo o enviar un mensaje no confirma una cita.
@@ -75,7 +80,7 @@ Para solicitar una cita:
 
 La solicitud es una petición y no una reserva automática ni una cita confirmada. Los estados previstos son “Solicitud recibida”, “En revisión” y “Confirmada”, pero actualmente Beauty Connect no permite consultar el estado mediante el folio.
 
-Beauty Connect no publica información confirmada sobre horarios, disponibilidad en tiempo real, direcciones exactas, servicio a domicilio, costos de traslado, duración de servicios, promociones, descuentos, métodos de pago, anticipos, políticas de cancelación, reprogramación, reembolsos, tiempo de respuesta, reseñas ni resultados garantizados.`;
+Beauty Connect no publica información confirmada sobre horarios, disponibilidad en tiempo real, direcciones exactas, servicio a domicilio, costos de traslado, duración definitiva de servicios, promociones, descuentos, métodos de pago, anticipos, políticas de cancelación, reprogramación, reembolsos, tiempo de respuesta, reseñas ni resultados garantizados.`;
 
 function sendJson(response, statusCode, body) {
     response.statusCode = statusCode;
