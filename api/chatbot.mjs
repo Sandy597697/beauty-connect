@@ -1,4 +1,4 @@
-const GEMINI_MODEL = 'gemini-2.5-flash';
+const GEMINI_MODEL = 'gemini-3.5-flash';
 const MAX_MESSAGE_LENGTH = 1000;
 
 const SYSTEM_INSTRUCTION = `Eres el asistente virtual informativo de Beauty Connect, una plataforma que ayuda a las personas a encontrar profesionales de belleza y enviar solicitudes de cita.
