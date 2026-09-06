@@ -189,63 +189,87 @@ y un botón **"Volver a categorías"** que regresa a la Pantalla 1.
 
 ## Funcionalidad 3: Solicitar una cita
 
-**Objetivo:** permitir que una persona envíe una solicitud de cita con sus datos de contacto, el profesional y el servicio de su interés.
+**Objetivo:** registrar una petición de cita después de que la persona elija opciones del producto, complete sus datos y revise la información. No constituye una reserva automática ni una cita confirmada.
 
-### Acceso y navegación
+### Acceso y selección
 
-- Desde la pantalla principal, el usuario accede mediante el enlace **"Solicitar una cita"**.
-- El enlace abre la página `solicitar-cita.html`.
-- La página incluye el enlace **"Volver al inicio"**, que regresa a la pantalla principal.
+- Desde las categorías o el listado en `index.html`, **“Solicitar una cita”** abre `solicitar-cita.html`. **“Volver al inicio”** regresa a `index.html`.
+- El perfil ofrece **“Contactar por WhatsApp”**; no contiene un botón para enviar la solicitud desde el perfil.
+- `solicitar-cita.js` carga `data/products.json` y utiliza profesionales activos con nombre y categoría.
+- El selector de servicio contiene las categorías de esos profesionales, sin duplicados y en orden alfabético. Actualmente ofrece Cabello, Maquillaje y Uñas; Pestañas no tiene profesionales activos y no se ofrece en el formulario.
+- El selector de profesional permanece deshabilitado hasta elegir servicio. Después muestra únicamente los profesionales de ese servicio, ordenados por nombre. Cambiar el servicio reinicia la selección del profesional.
+- Si la URL incluye `servicio` y `profesional`, solo se preseleccionan cuando coinciden con las opciones disponibles.
 
-### Pantalla: Solicitar una cita
+### Paso 1: Datos de la solicitud
 
-**Lo que ve el usuario:**
+**Campos obligatorios:**
 
-- Título **"Solicitar una cita"**.
-- Formulario de solicitud con seis campos.
-- Botón **"Enviar solicitud"**.
+- `nombre_cliente`: nombre, hasta 120 caracteres.
+- `telefono`: teléfono, entre 8 y 30 caracteres según el patrón admitido: dígitos, espacios, paréntesis, guiones y un signo + inicial opcional.
+- `servicio`: selección entre las opciones del producto.
+- `profesional`: selección filtrada por servicio.
+- `fecha_solicitada`: fecha deseada; el formulario establece como mínimo el día local actual.
 
-**Lo que hace el usuario:**
+**Campo opcional:** `mensaje`, hasta 1000 caracteres.
 
-- Completa los seis campos del formulario.
-- Presiona el botón **"Enviar solicitud"** para enviar la información.
+El botón **“Revisar solicitud”** valida el formulario y la combinación de servicio y profesional, elimina espacios al inicio y final de los valores y abre la revisión. Este paso todavía no registra datos en Supabase.
 
-**Datos de entrada:**
+### Paso 2: Pantalla de revisión
 
-- `nombre_cliente`: nombre de la persona que solicita la cita.
-- `telefono`: número de teléfono de contacto.
-- `profesional`: profesional con quien desea solicitar la cita.
-- `servicio`: servicio de belleza solicitado.
-- `fecha_solicitada`: fecha deseada para la cita.
-- `mensaje`: información adicional proporcionada por la persona.
+- **“Revisa tu solicitud”** muestra nombre, teléfono, profesional, servicio, fecha y mensaje; si este está vacío, muestra **“Sin mensaje adicional”**.
+- **“Regresar y corregir”** vuelve al formulario con los datos conservados. Al pulsar nuevamente **“Revisar solicitud”**, se actualiza el resumen.
+- **“Confirmar solicitud”** inicia el envío. Mientras se guarda, ambos botones se deshabilitan, el de confirmación muestra **“Guardando…”** y aparece **“Estamos guardando tu solicitud.”**.
 
-**Datos de salida:**
+### Registro mediante función serverless
 
-- Una sola fila almacenada en la tabla `solicitudes_cita` de Supabase.
-- Mensaje de confirmación o mensaje de error, según el resultado del envío.
+- El navegador envía los cinco campos obligatorios y el mensaje por POST en JSON a `/api/solicitudes-cita`.
+- `api/solicitudes-cita.mjs` valida el objeto JSON, campos obligatorios, longitudes, formato del teléfono y validez de la fecha. La selección según el catálogo y la fecha mínima se comprueban en el navegador; la función no contrasta el profesional y servicio con el catálogo ni rechaza por sí misma una fecha pasada válida.
+- La función utiliza `SUPABASE_SERVICE_KEY` desde el entorno del servidor e inserta un objeto en la tabla `solicitudes_cita` mediante la API REST de Supabase. El navegador no recibe esa clave.
+- No envía manualmente `id`, `created_at`, `folio` ni `estado`. Solicita a Supabase que devuelva `folio` y `estado`.
+- Si recibe ambos valores, responde con HTTP 201 y `{ success: true, folio, estado }`.
 
-### Reglas funcionales
+### Confirmación
 
-- Los seis campos son obligatorios.
-- El envío crea una sola fila en la tabla `solicitudes_cita` con los seis campos del formulario.
-- La aplicación no envía manualmente los campos `id` ni `created_at`.
-- Mientras se procesa la solicitud, el botón queda deshabilitado y muestra el texto **"Enviando…"**.
-- Después de un envío exitoso, el formulario se limpia.
-- Al finalizar el intento, tanto si fue exitoso como si ocurrió un error, el botón se reactiva y recupera el texto **"Enviar solicitud"**.
+Después de una respuesta válida, el formulario se limpia y aparece **“Recibimos tu solicitud”**, con el folio único y el estado inicial **“Solicitud recibida”**, además de **“Volver al inicio”**.
 
-### Estado de confirmación
+El folio y el estado se muestran tal como los devuelve Supabase. La generación del folio único y el estado inicial dependen de la configuración de la tabla; el repositorio no incluye el esquema SQL para verificar esos valores predeterminados o la restricción de unicidad. La función no los genera ni los fija.
 
-Después de almacenar correctamente la solicitud, el sistema muestra el mensaje:
+El folio funciona como identificador y comprobante de la solicitud. Actualmente no existe una función de consulta automática por folio ni un flujo implementado para cambiar el estado a **“En revisión”** o **“Confirmada”**.
 
-**"¡Gracias! Tu solicitud de cita fue enviada correctamente."**
+### Carga y errores
 
-### Estado de error
+- Durante la carga de opciones se muestra **“Cargando profesionales y servicios…”** y el formulario permanece oculto.
+- Si falla la carga o no hay profesionales activos, aparece el detalle junto con **“Recarga la página para intentarlo nuevamente.”**.
+- Si falla el envío, se mantiene la revisión y los datos, y se muestra **“No pudimos guardar tu solicitud. {detalle del error}”**. Los botones se habilitan nuevamente para corregir o reintentar.
+- Si Supabase guardó la fila pero no devolvió folio y estado, la función responde con un error que indica esa situación. No hay deduplicación de reintentos implementada; deshabilitar los botones evita envíos repetidos mientras la petición está en curso.
 
-Si Supabase devuelve un error o falla el envío, el formulario conserva los datos ingresados y el sistema muestra:
+---
 
-**"No pudimos enviar tu solicitud. {detalle del error}"**
+## Funcionalidad 4: Chatbot informativo
 
-Si no existe un detalle de error disponible, utiliza el texto **"Intenta nuevamente."**. Después del intento, el botón vuelve a estar habilitado y muestra nuevamente **"Enviar solicitud"**.
+### Acceso y funcionamiento
+
+- `chatbot.js` integra el botón **“Asistente Beauty Connect”** en `index.html` (categorías y listado), `perfil-profesional.html` y `solicitar-cita.html`.
+- La persona puede abrir y cerrar el panel y enviar una pregunta de hasta 1000 caracteres. Mientras espera, el campo y el botón se deshabilitan y aparece **“Consultando…”**.
+- El navegador envía únicamente `{ mensaje }` por POST a `/api/chatbot`. `api/chatbot.mjs` valida el mensaje y consulta Gemini con la instrucción permanente y el conocimiento incluido en esa función.
+- La configuración actual utiliza `gemini-3.5-flash`, `temperature: 0.2`, `maxOutputTokens: 1024` y `thinkingLevel: "MINIMAL"`. La clave se lee de `GEMINI_API_KEY` en el servidor.
+- La respuesta exitosa es `{ respuesta }` y se presenta mediante texto del DOM. Los errores se muestran en el panel. El historial visible no se envía a Gemini ni se conserva al navegar a otra página.
+
+### Alcance y límites
+
+La instrucción permanente indica:
+
+- Responder en español, de forma breve y en texto plano, sin Markdown, asteriscos, etiquetas ni entidades HTML.
+- Orientar únicamente sobre Beauty Connect: categorías, profesionales publicados, perfiles, precios iniciales, ubicación general, WhatsApp y procedimiento de solicitud.
+- Utilizar exclusivamente el conocimiento incluido; reconocer información no disponible y no inventar precios, horarios, disponibilidad, políticas ni características.
+- Informar si el perfil está verificado o no, sin calificar al profesional como excelente, confiable, recomendado o mejor. La verificación no garantiza la calidad del servicio.
+- Diferenciar **“Contactar por WhatsApp”** desde el perfil y **“Solicitar una cita”** en Beauty Connect, con selección, datos, revisión y confirmación.
+- No prometer respuesta inmediata ni tiempos específicos del profesional.
+- No confirmar citas, garantizar aceptación de fechas, consultar solicitudes por folio ni presentar una solicitud como reserva confirmada.
+- No solicitar ni reproducir claves, credenciales, datos privados, nombres, teléfonos, folios o información de solicitudes; no ofrecer diagnósticos ni recomendaciones sobre procedimientos médicos.
+- Orientar al contacto por WhatsApp para confirmar precio final, disponibilidad, dirección, horario, cambios o cancelaciones.
+
+El chatbot no es un chat entre cliente y profesional, no consulta Supabase y no registra solicitudes. Las reglas de respuesta se transmiten al modelo mediante su instrucción; no hay un filtro posterior que garantice su cumplimiento.
 
 ---
 

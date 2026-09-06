@@ -35,7 +35,7 @@ Profesionales independientes o pequeños negocios que desean promocionar sus ser
 - Como cliente, quiero seleccionar una categoría de servicio para encontrar profesionales.
 - Como cliente, quiero visualizar un listado de profesionales para comparar opciones.
 - Como cliente, quiero ingresar al perfil de un profesional para conocer su información.
-- Como cliente, quiero visualizar fotografías de trabajos realizados para evaluar la calidad del servicio.
+- Como cliente, quiero visualizar una fotografía representativa por profesional. La aplicación no incluye una galería o portafolio de trabajos.
 - Como cliente, quiero ver si un perfil está verificado para confiar en la información que muestra.
 - Como cliente, quiero contactar al profesional para solicitar una cita.
 
@@ -70,7 +70,7 @@ Presenta la información necesaria para ayudar al cliente a tomar una decisión,
 - Descripción.
 - Servicios.
 - Precio desde.
-- Fotografías.
+- Una fotografía representativa por profesional. No existe una galería o portafolio de trabajos.
 - Zona o ubicación aproximada.
 - Distintivo **Perfil verificado** (cuando aplique).
 - Datos de contacto.
@@ -100,6 +100,14 @@ Para el MVP, la creación y actualización de perfiles la realiza el equipo de B
 
 ---
 
+## 4.5 Asistente informativo de Beauty Connect
+
+El chatbot implementado orienta sobre Beauty Connect, sus categorías, profesionales publicados, precios iniciales, ubicación general, contacto por WhatsApp y pasos para enviar una solicitud de cita. Está disponible desde el inicio, los perfiles y la página de solicitud mediante **“Asistente Beauty Connect”**.
+
+Se comunica con Gemini mediante `api/chatbot.mjs` y utiliza el conocimiento incluido en su instrucción permanente. No es un chat interno entre cliente y profesional: no transmite mensajes entre usuarios, no registra ni confirma citas y no consulta solicitudes por folio. Para contactar al profesional se utiliza WhatsApp desde su perfil; para registrar una petición se utiliza el flujo **“Solicitar una cita”**, con revisión y confirmación. El folio funciona como identificador y comprobante de la solicitud; actualmente no existe una función de consulta automática por folio. El estado inicial mostrado es **“Solicitud recibida”**.
+
+---
+
 # 5. Out of Scope
 
 | Funcionalidad | Justificación |
@@ -110,7 +118,7 @@ Para el MVP, la creación y actualización de perfiles la realiza el equipo de B
 | Reservas automáticas | El contacto directo por WhatsApp es suficiente para validar el MVP. |
 | Calificaciones y reseñas | Se incorporarán cuando exista una base de usuarios. |
 | Notificaciones | No son indispensables para validar la propuesta de valor. |
-| Chat interno | El contacto directo por WhatsApp es suficiente para el MVP. |
+| Chat directo entre usuarios (cliente y profesional) | El contacto con el profesional se realiza externamente por WhatsApp. El chatbot implementado es únicamente un asistente informativo de Beauty Connect. |
 | Pagos en línea | Requieren procesos adicionales que no forman parte de la primera versión. |
 
 ---
