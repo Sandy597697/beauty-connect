@@ -198,7 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
         zone.className = 'professional-zone';
         zone.appendChild(createLocationIcon());
         const zoneText = document.createElement('span');
-        zoneText.textContent = professional.zone || 'Ubicación por confirmar';
+        zoneText.textContent = professional.location_display || professional.zone || 'Ubicación por confirmar';
         zone.appendChild(zoneText);
 
         const price = document.createElement('span');

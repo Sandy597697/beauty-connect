@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
         name.textContent = professional.name;
         category.textContent = professional.category;
         description.textContent = professional.description;
-        zone.textContent = professional.zone || 'Ubicación por confirmar';
+        zone.textContent = professional.location_display || professional.zone || 'Ubicación por confirmar';
         price.textContent = Number.isFinite(professional.price_from)
             ? `Desde Q${professional.price_from.toLocaleString('es-GT')}`
             : 'Precio a consultar';

@@ -132,6 +132,55 @@ select {
     line-height: 1.55;
 }
 
+.home-page,
+body:has(.profile-container) {
+    --color-muted: #594D60;
+}
+
+.home-page .app-main {
+    padding-block: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.home-page .intro {
+    margin-bottom: clamp(1.5rem, 3vw, 2rem);
+}
+
+.home-page .eyebrow,
+.home-page .category-action,
+.home-page .professional-card-link:hover .professional-profile-hint,
+.profile-container .eyebrow,
+.home-page .chatbot-message-assistant .chatbot-message-author,
+body:has(.profile-container) .chatbot-message-assistant .chatbot-message-author {
+    color: var(--color-primary);
+}
+
+.home-page .tagline,
+.home-page .intro-copy,
+.home-page .footer-note,
+.home-page .professional-zone,
+body:has(.profile-container) .tagline,
+body:has(.profile-container) .footer-note,
+.profile-description,
+.profile-detail,
+.profile-service-description,
+.profile-services-note {
+    font-weight: 500;
+}
+
+.home-page .primary-action:hover,
+.home-page .chatbot-toggle:hover,
+.home-page .chatbot-send:hover,
+body:has(.profile-container) .whatsapp-button:hover,
+body:has(.profile-container) .chatbot-toggle:hover,
+body:has(.profile-container) .chatbot-send:hover {
+    border-color: #69408E;
+    background: #69408E;
+}
+
+.home-appointment {
+    margin-top: clamp(1.5rem, 3vw, 2rem);
+}
+
 .cards-container,
 .professionals-container {
     max-width: 1140px;
@@ -379,6 +428,7 @@ select {
 
 .professional-zone svg {
     width: 0.9rem;
+    flex-shrink: 0;
     fill: var(--color-secondary);
 }
 

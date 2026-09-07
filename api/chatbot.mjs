@@ -46,9 +46,9 @@ Beauty Connect conecta a personas que buscan servicios de belleza con profesiona
 Las categorías visibles son Uñas, Cabello, Maquillaje y Pestañas.
 
 Profesionales activos:
-- Luna Nails Studio: categoría Uñas, Zona 10, precio desde Q150. Perfil verificado. Especialistas en manicura, pedicura y diseños de uñas con acabados elegantes y personalizados.
-- Estilo Bella: categoría Cabello, Zona 14, precio desde Q200. Perfil verificado. Ofrece corte, peinado y cuidado del cabello.
-- Glam by Ana: categoría Maquillaje, Mixco, precio desde Q250. Perfil no verificado. Ofrece maquillaje profesional y personalizado para eventos, sesiones fotográficas y ocasiones especiales.
+- Luna Nails Studio: categoría Uñas, Zona 10, Ciudad de Guatemala, precio desde Q150. Perfil verificado. Especialistas en manicura, pedicura y diseños de uñas con acabados elegantes y personalizados.
+- Estilo Bella: categoría Cabello, Zona 14, Ciudad de Guatemala, precio desde Q200. Perfil verificado. Ofrece corte, peinado y cuidado del cabello.
+- Glam by Ana: categoría Maquillaje, Mixco, departamento de Guatemala, precio desde Q250. Perfil no verificado. Ofrece maquillaje profesional y personalizado para eventos, sesiones fotográficas y ocasiones especiales.
 
 Actualmente no hay profesionales disponibles en la categoría Pestañas.
 
